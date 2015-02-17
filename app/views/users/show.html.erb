@@ -1,0 +1,31 @@
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @user.age %>
+</p>
+
+<h2>tweets</h2>
+<% @user.tweets.each do |tweet| %>
+<p>
+  <strong>tweet:</strong>
+  <%= tweet.body %>
+</p>
+<% end %>
+
+<h2>Add a Tweet:</h2>
+<%= form_for([@user, @user.tweets.build]) do |f| %>
+<p>
+  <%= f.label :body %><br>
+  <%= f.text_area :body %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
+
+<%= link_to 'Back', users_path %> |
+<%= link_to 'Edit', edit_user_path(@user) %>

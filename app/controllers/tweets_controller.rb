@@ -24,17 +24,9 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
-
-    respond_to do |format|
-      if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
-        format.json { render :show, status: :created, location: @tweet }
-      else
-        format.html { render :new }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
-      end
-    end
+    @user = User.find(params[:user_id])
+    @tweet = @user.tweets.create(tweet_params)
+    redirect_to user_path(@user)
   end
 
   # PATCH/PUT /tweets/1

@@ -1,3 +1,5 @@
-<% @users.each do |user| %>
-  <h3><%= user.name %></h3> <%= link_to 'Tweet', home_create_tweet_path(user) %>
+<% @tweets.each do |tweet| %>
+<h2><%= tweet.body %> by <small><%= link_to tweet.user.name, tweet.user %></small></h2>
 <% end %>
+
+<%= link_to 'All users', users_path %>
